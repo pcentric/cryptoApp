@@ -21,10 +21,11 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
-  const { Title } = Typography;
   const coinPrice = [];
   const coinTimestamp = [];
+  const { Title } = Typography;
 
   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
     coinPrice.push(coinHistory?.data?.history[i].price);
@@ -32,9 +33,10 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
 
   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
     coinTimestamp.push(
-      new Date(coinHistory?.data?.history[i].timestamp).toLocaleDateString()
+      new Date(coinHistory?.data?.history[i]?.timestamp).toLocaleDateString()
     );
   }
+
   const data = {
     labels: coinTimestamp,
     datasets: [
@@ -50,16 +52,11 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
 
   const options = {
     scales: {
-      yAxes: [
-        {
-          display: true,
-          ticks: {
-            suggestedMin: 0, // minimum will be 0, unless there is a lower value.
-            // OR //
-            beginAtZero: true, // minimum value will be 0.
-          },
+      yAxes: {
+        ticks: {
+          beginAtZero: true,
         },
-      ],
+      },
     },
   };
 
@@ -67,7 +64,7 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
     <>
       <Row className="chart-header">
         <Title level={2} className="chart-title">
-          {coinName} Price Chart{" "}
+          {coinName} Price Chart
         </Title>
         <Col className="price-container">
           <Title level={5} className="price-change">
