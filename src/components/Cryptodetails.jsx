@@ -35,7 +35,7 @@ const CryptoDetails = () => {
   const cryptoDetails = data?.data?.coin;
 
   if (isFetching) return "Loading..";
-
+  
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
   const stats = [
@@ -47,7 +47,7 @@ const CryptoDetails = () => {
     { title: "Rank", value: cryptoDetails?.rank, icon: <NumberOutlined /> },
     {
       title: "24h Volume",
-      value: `$ ${cryptoDetails?.volume && millify(cryptoDetails?.volume)}`,
+      value: `${cryptoDetails['24hVolume']  && millify(cryptoDetails['24hVolume'] )}`,
       icon: <ThunderboltOutlined />,
     },
     {
